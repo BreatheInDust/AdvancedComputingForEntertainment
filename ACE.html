@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ACE Productions — Advanced Computing for Entertainment</title>
+  <meta name="description" content="ACE Productions — Advanced Computing for Entertainment. We build the future of games, film, and interactive media." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f172a;
+      --muted:#9aa4b2;
+      --accent:#ff8a00;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max:1200px;
+      --container-pad:24px;
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#061024 0%, #07102a 50%, #071226 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:0;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:32px var(--container-pad)}
+    header{position:sticky;top:0;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(6,10,24,0.6), rgba(6,10,24,0.35));border-bottom:1px solid rgba(255,255,255,0.03);z-index:40}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px var(--container-pad)}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(180deg,var(--accent),#ffbb6b);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.45);font-weight:700;color:#071027}
+    .brand-title{font-weight:700;line-height:1}
+    .brand-sub{font-size:12px;color:var(--muted);margin-top:2px}
+    nav.desktop{display:flex;gap:18px;align-items:center;font-size:15px}
+    nav.desktop a:hover{opacity:0.9}
+    .cta a{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.06);font-weight:600}
+    /* Hero */
+    .hero{padding:56px 0;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:24px}
+    h1{font-size:30px;margin:0}
+    .lead{font-size:16px;color:var(--muted);max-width:60ch}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{padding:10px 16px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffb36b);color:#071027;border:none;font-weight:700}
+    .badges{display:flex;gap:8px;margin-top:12px}
+    .badge{background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:13px}
+    /* Cards grid */
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 6px 0;font-size:15px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+    /* Sections */
+    section{padding:28px 0}
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+    .values{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .small-card{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px}
+    .tabs{display:flex;gap:8px;margin-left:auto}
+    .tabs button{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+    /* Partner & Community */
+    .partner-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    /* Contact form */
+    form{display:grid;gap:10px}
+    input,textarea{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;color:inherit}
+    textarea{min-height:120px;resize:vertical}
+    .submit{background:var(--accent);border:none;padding:10px 14px;border-radius:10px;color:#071027;font-weight:700;cursor:pointer}
+    footer{border-top:1px solid rgba(255,255,255,0.03);padding:24px 0;margin-top:24px;color:var(--muted)}
+    footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    small{color:var(--muted)}
+    /* Responsive */
+    @media (min-width:900px){
+      .hero-grid{grid-template-columns:1fr 480px}
+      h1{font-size:42px}
+      .grid3{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:899px){
+      .two-col{grid-template-columns:1fr;gap:18px}
+      .grid3{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
+      nav.desktop{display:none}
+    }
+    /* lightweight utilities */
+    .muted{color:var(--muted)}
+    .launch-row{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+    .section-title{font-size:20px;margin:0 0 8px 0}
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="https://mail.google.com/mail/u/0?ui=2&ik=3553d24f26&attid=0.1&permmsgid=msg-a:r-8942703734839532035&th=198f1c9a424eade2&view=fimg&fur=ip&permmsgid=msg-a:r-8942703734839532035&sz=s0-l75-ft&attbid=ANGjdJ9LmzlDln56IeBJ162kp5Zyn1bq1vR3H5G6OY8kEGJ1yJiWTjuQMWjJQoIxQbzEb6Pt2qHrjxOCiVuMlXE_UCPJc28eKdHgNuJEjKUlL_tBBgpJEVwfxTmR5YM&disp=emb&realattid=ii_mevp3n8p0&zw" alt="ACE Productions Logo" style="width: 44px; height: 44px; border-radius: 12px;">
+        <div>
+          <div class="brand-title">ACE Productions</div>
+          <div class="brand-sub">Advanced Computing for Entertainment</div>
+        </div>
+      </div>
+      <nav class="desktop" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#partners">Partners</a>
+        <a href="#community">Community</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="cta">
+        <a href="https://x.com/AdvComEnt" target="_blank" rel="noreferrer">Follow on X</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>Advanced Computing for Entertainment</h1>
+          <p class="lead">ACE builds the future of games, film, and interactive media—blending cloud, AI, and design craft to deliver unforgettable experiences at scale.</p>
+          <div class="buttons">
+            <button class="btn primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Explore Projects</button>
+            <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Partner with ACE</button>
+          </div>
+          <div class="badges">
+            <div class="badge">Global</div>
+            <div class="badge">Cross-platform</div>
+            <div class="badge">Safety-first</div>
+          </div>
+          <div class="grid3" aria-hidden="false" style="margin-top:18px">
+            <div class="card">
+              <h3>PlayerCloud</h3>
+              <p>Crossplay sessions, cloud tiers, curated rotations and premium performance levels.</p>
+            </div>
+            <div class="card">
+              <h3>Narrow One: ACE</h3>
+              <p>Hyper-real reimagining of Pelican Party’s title—precision physics and cinematic feedback, blood-free.</p>
+            </div>
+            <div class="card">
+              <h3>Advanced Computing</h3>
+              <p>AI, rendering, and simulation pipelines that scale from desktop to cloud clusters.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="padding:20px">
+            <h3 style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><path d="M12 2l3 6h6l-4.8 3.6L20 20l-8-5-8 5 2.8-8.4L2 8h6l3-6z" fill="rgba(255,255,255,0.9)"/></svg> Platform Snapshot</h3>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px">
+              <div class="small-card"><div class="muted">R&amp;D</div><div style="font-weight:700">AI · Rendering · Sim</div></div>
+              <div class="small-card"><div class="muted">Live Ops</div><div style="font-weight:700">Cloud · Crossplay</div></div>
+              <div class="small-card"><div class="muted">Studios</div><div style="font-weight:700">Co-Dev · Publishing</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="two-col">
+        <div>
+          <h2 class="section-title">About ACE Productions</h2>
+          <p class="muted">ACE Productions (Advanced Computing for Entertainment) is a global tech-media company at the intersection of creativity and computation. We design, develop, and deliver cross-platform experiences — from blockbuster games to cloud systems that power them.</p>
+          <div class="values" style="margin-top:18px">
+            <div class="card small-card">
+              <strong>Invent the Medium</strong>
+              <p class="muted" style="margin-top:6px">We don’t just build for the future—we define it across games, film, and interactive media.</p>
+            </div>
+            <div class="card small-card">
+              <strong>Creators First</strong>
+              <p class="muted" style="margin-top:6px">Empowering artists and engineers with tools that amplify imagination.</p>
+            </div>
+            <div class="card small-card">
+              <strong>Responsible Innovation</strong>
+              <p class="muted" style="margin-top:6px">Safety, accessibility, and inclusion are core requirements, not add-ons.</p>
+            </div>
+          </div>
+        </div>
+        <aside>
+          <div class="card">
+            <h3 style="margin:0 0 8px 0">Quick Links</h3>
+            <div style="display:grid;gap:8px;margin-top:8px">
+              <a href="https://x.com/AdvComEnt" target="_blank" rel="noreferrer">X: @AdvComEnt</a>
+              <a href="#community">Discord Community</a>
+              <a href="#projects">Projects</a>
+              <a href="#contact">Partnerships</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div style="display:flex;align-items:end;gap:12px;flex-wrap:wrap;justify-content:space-between">
+        <h2 class="section-title">Flagship Projects</h2>
+        <div class="tabs" role="tablist" aria-label="Project tabs">
+          <button type="button" onclick="showTab('playercloud')">PlayerCloud</button>
+          <button type="button" onclick="showTab('narrowone')">Narrow One: ACE</button>
+          <button type="button" onclick="showTab('platform')">ACE Platform</button>
+        </div>
+      </div>
+      <div class="projects-grid" style="margin-top:12px">
+        <div class="card" id="playercloud">
+          <h3>PlayerCloud</h3>
+          <div class="tag" style="margin-top:8px">Cloud Gaming</div>
+          <p class="muted" style="margin-top:10px">Crossplay sessions across curated games, with free and premium performance tiers and low-latency infrastructure.</p>
+        </div>
+        <div class="card" id="narrowone" style="display:none">
+          <h3>Narrow One: ACE</h3>
+          <div class="tag" style="margin-top:8px">Co-Dev</div>
+          <p class="muted" style="margin-top:10px">A hyper-real reimagining of Pelican Party’s Narrow One. Cinematic reactions, premade characters, and accessible, blood-free realism.</p>
+        </div>
+        <div class="card" id="platform" style="display:none">
+          <h3>ACE Platform</h3>
+          <div class="tag" style="margin-top:8px">R&amp;D</div>
+          <p class="muted" style="margin-top:10px">AI, rendering, and simulation pipelines that scale from desktop prototypes to cloud-native clusters and production services.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners">
+      <div style="display:grid;grid-template-columns:1fr 420px;gap:18px">
+        <div>
+          <h2 class="section-title">Partners</h2>
+          <p class="muted">We collaborate with world-class creators and studios. Recent collaboration: **Pelican Party** on Narrow One: ACE, bringing hyper-real visuals, precise physics, and cinematic feedback to a beloved multiplayer experience—while staying accessible and blood-free.</p>
+          <div class="partner-badges">
+            <div class="tag">Pelican Party</div>
+            <div class="tag">Cross-dev</div>
+            <div class="tag">Real-time Physics</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Collaboration Snapshot</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <div class="small-card"><div class="muted">Focus</div><div style="font-weight:700">Hyper-real gameplay</div></div>
+            <div class="small-card"><div class="muted">Visuals</div><div style="font-weight:700">Cinematic reactions</div></div>
+            <div class="small-card"><div class="muted">Ethos</div><div style="font-weight:700">Blood-free, accessible</div></div>
+            <div class="small-card"><div class="muted">Tech</div><div style="font-weight:700">Cloud-scaled physics</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="two-col">
+        <div>
+          <h2 class="section-title">Community</h2>
+          <p class="muted">Join the official ACE Productions community—where gaming, media, and technology converge. Learn, prototype, share feedback, and help us shape the future of entertainment together.</p>
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn" href="https://x.com/AdvComEnt" target="_blank" rel="noreferrer">Follow on X</a>
+            <a class="btn" href="#" onclick="alert('https://discord.gg/mWrXrYWn')">Join Discord</a>
+          </div>
+        </div>
+        <aside class="card">
+          <h3>Community Standards</h3>
+          <div style="margin-top:10px">
+            <p class="muted">• Respect everyone. No harassment, hate speech, or personal attacks.</p>
+            <p class="muted">• Keep it safe. No NSFW content, illegal activity, or harmful discussions.</p>
+            <p class="muted">• Stay relevant. Use channels as intended; avoid spam and self-promotion.</p>
+            <p class="muted">• Follow Discord ToS. Staff decisions are final.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="two-col">
+        <div>
+          <h2 class="section-title">Contact & Partnerships</h2>
+          <p class="muted">We welcome inquiries from fellow creators, studios, and partners. Whether you're interested in a collaboration, a project pitch, or just want to say hi, reach out to us at <a href="mailto:ok.hey.services@gmail.com">ok.hey.services@gmail.com</a>. We'd love to hear from you.</p>
+          <form id="contactForm" onsubmit="submitForm(event)" style="margin-top:18px">
+            <input type="text" id="name" name="name" placeholder="Name" required="">
+            <input type="email" id="email" name="email" placeholder="Email" required="">
+            <textarea id="message" name="message" placeholder="Your message..." required=""></textarea>
+            <small style="color:#d4d4d8" id="formStatus"></small>
+            <button class="btn primary submit" type="submit">Send Message</button>
+          </form>
+        </div>
+        <aside class="card">
+          <div style="display:grid;gap:8px">
+            <div>
+              <div class="muted">Discord</div>
+              <a href="#" onclick="alert('https://discord.gg/mWrXrYWn')">Join our community</a>
+            </div>
+            <div>
+              <div class="muted">Email</div>
+              <a href="mailto:ok.hey.services@gmail.com">ok.hey.services@gmail.com</a>
+            </div>
+            <div>
+              <div class="muted">Follow</div>
+              <a href="https://x.com/AdvComEnt" target="_blank" rel="noreferrer">@AdvComEnt</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="cols">
+        <div>
+          <div style="font-weight:700">ACE Productions</div>
+          <p style="font-size:13px;margin:8px 0">Advanced Computing for Entertainment</p>
+          <p style="font-size:12px;margin:0;color:#5a5a67">San Francisco, CA</p>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:8px">Company</div>
+          <div style="display:grid;gap:4px">
+            <a href="#about" style="font-size:14px">About</a>
+            <a href="#partners" style="font-size:14px">Partners</a>
+            <a href="#contact" style="font-size:14px">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:8px">Projects</div>
+          <div style="display:grid;gap:4px">
+            <a href="#projects" style="font-size:14px">PlayerCloud</a>
+            <a href="#projects" style="font-size:14px">Narrow One: ACE</a>
+            <a href="#projects" style="font-size:14px">ACE Platform</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:8px">Social</div>
+          <div style="display:grid;gap:4px">
+            <a href="https://x.com/AdvComEnt" target="_blank" rel="noreferrer" style="font-size:14px">X (formerly Twitter)</a>
+            <a href="#" onclick="alert('https://discord.gg/mWrXrYWn')" style="font-size:14px">Discord</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="padding-top:16px;padding-bottom:16px">
+      <small>© <span id="year"></span> ACE Productions. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      document.body.classList.toggle('dark');
+    });
+
+    // Project tabs
+    const projectKeys = ['playercloud','narrowone','platform'];
+    function showTab(id){
+      projectKeys.forEach(k=>{
+        const el = document.getElementById(k);
+        if(!el) return;
+        el.style.display = (k===id) ? 'block' : 'none';
+      });
+      // Scroll to projects area to announce change on mobile
+      document.getElementById('projects').scrollIntoView({behavior:'smooth'});
+    }
+
+    // Contact form faux-submission (replace with real endpoint)
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const status = document.getElementById('formStatus');
+
+      if(!name || !email){
+        status.textContent = 'Please provide name and email.';
+        return;
+      }
+      status.textContent = 'Sending…';
+
+      // Demo: simulate request; replace this with fetch to your backend
+      setTimeout(()=>{
+        status.textContent = 'Thanks — your message has been received. We will reply via email.';
+        document.getElementById('contactForm').reset();
+      }, 900);
+    }
+
+    // Simple smooth scroll for anchor links in header (mobile fallback)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const targ = document.querySelector(this.getAttribute('href'));
+        if(targ){
+          e.preventDefault();
+          targ.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
